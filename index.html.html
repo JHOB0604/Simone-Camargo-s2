@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<title>João ❤️ Simone</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    background:#ffd6e7;
+    text-align:center;
+}
+
+#start{
+    margin-top:100px;
+}
+
+#story{
+    display:none;
+}
+
+button{
+    padding:10px 20px;
+    font-size:16px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d88;
+    color:white;
+    cursor:pointer;
+}
+
+img{
+    max-width:300px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+.heart{
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: cair 6s linear infinite;
+    z-index:0;
+}
+
+@keyframes cair{
+    0%{
+        transform: translateY(-10px);
+        opacity:1;
+    }
+    100%{
+        transform: translateY(100vh);
+        opacity:0;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="start">
+
+<h1>🌸 Aperte o Play e clica em começar 🌸</h1>
+
+<audio autoplay controls loop>
+  <source src="meu-abrigo.mp3.mp3" type="audio/mpeg">
+  Seu navegador não suporta a tag de áudio.
+</audio>
+
+<p>Hoje celebramos 3 meses de nós.
+Pode parecer pouco tempo, mas foi o suficiente para você se tornar uma das partes mais especiais da minha vida.
+Espero que você goste, Meu Amor...</p>
+
+<button onclick="start()">Toque para começar</button>
+
+</div>
+
+<div id="story">
+
+<h1>🌸 Nossos Momentos 🌸</h1>
+
+<h2 id="texto"></h2>
+
+<img id="story-image">
+
+<div>❤️ Simone S2 João ❤️</div>
+
+<button onclick="voltar()">❤️ Voltar</button>
+<button onclick="proximo()">Próximo ❤️</button>
+
+</div>
+
+<script>
+
+const historia = [
+{
+texto:"Hoje a gente completa 3 meses juntos!",
+img:"https://i.postimg.cc/T2qbYRpD/Foto-01.jpg"
+},
+{
+texto:"E eu fico pensando como em tão pouco tempo você se tornou tão importante pra mim.",
+img:"https://i.postimg.cc/VsBtLYd0/Foto-02.jpg"
+},
+{
+texto:"Parece que meu coração já te conhecia antes mesmo de tudo isso começar.",
+img:"https://i.postimg.cc/rFVrDvrs/Foto-03.jpg"
+},
+{
+texto:"Estar com você é diferente…",
+img:"https://i.postimg.cc/pXWFmgFp/Foto-04.jpg"
+},
+{
+texto:"É leve, é verdadeiro, é aquele tipo de sentimento que faz a gente sorrir do nada só de lembrar da pessoa.",
+img:"https://i.postimg.cc/DyxbLBrd/Foto-05.jpg"
+},
+{
+texto:"Seu sorriso, seu jeito, seu carinho… tudo em você tem um lugar guardado dentro de mim, e cada dia que passa esse sentimento só cresce mais.",
+img:"https://i.postimg.cc/DwDJY0YG/Foto-06.jpg"
+},
+{
+texto:"Eu amo quando estamos juntos, amo nossas conversas, amo suas risadas e até os momentos simples.",
+img:"https://i.postimg.cc/vZjgSTSt/Foto-07.jpg"
+},
+{
+texto:"Você me traz uma paz que poucas coisas na vida conseguem trazer.",
+img:"https://i.postimg.cc/hGdzFnHC/Foto-08.jpg"
+},
+{
+texto:"Esses 3 meses são apenas o começo de algo lindo que quero continuar vivendo com você.",
+img:"https://i.postimg.cc/nzfsp5xr/Foto-09.jpg"
+},
+{
+texto:"Porque a verdade é que ter você na minha vida, tem feito meus dias muito mais felizes.",
+img:"https://i.postimg.cc/mDWcBq4F/Foto-10.jpg"
+},
+{
+texto:"Obrigado por fazer parte da minha vida, por me fazer tão feliz e por ser exatamente quem você É.",
+img:"https://i.postimg.cc/zBYL8MNg/Foto-11.jpg"
+},
+{
+texto:"❤️ A verdade é que, desde que você chegou na minha vida, tudo ficou mais bonito, mais leve e mais feliz. E eu só quero continuar vivendo tudo isso ao seu lado. Obrigado por tudo, Amor!!! ❤️",
+img:"https://i.postimg.cc/cH7vHm1R/Foto-12.jpg"
+}
+];
+
+let indice = 0;
+
+function start(){
+document.getElementById("start").style.display = "none";
+document.getElementById("story").style.display = "block";
+mostrarHistoria();
+}
+
+function mostrarHistoria(){
+
+const texto = document.getElementById("texto");
+const img = document.getElementById("story-image");
+
+texto.innerHTML = historia[indice].texto;
+img.src = historia[indice].img;
+
+}
+
+function proximo(){
+
+indice++;
+
+if(indice < historia.length){
+mostrarHistoria();
+}else{
+indice = historia.length - 1;
+}
+
+}
+
+function voltar(){
+
+indice--;
+
+if(indice >= 0){
+mostrarHistoria();
+}else{
+indice = 0;
+}
+
+}
+
+function criarCoracao(){
+
+    const coracao = document.createElement("div");
+    coracao.classList.add("heart");
+    coracao.innerHTML = "❤️";
+
+    coracao.style.left = Math.random() * 100 + "vw";
+    coracao.style.fontSize = (Math.random() * 20 + 10) + "px";
+    coracao.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(coracao);
+
+    setTimeout(()=>{
+        coracao.remove();
+    },6000);
+
+}
+
+setInterval(criarCoracao,300);
+
+</script>
+
+</body>
+</html>
